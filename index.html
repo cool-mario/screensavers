@@ -69,7 +69,9 @@
         const rainDrops = [];
 
         for (let x = 0; x < columns; x++) {
-            rainDrops[x] = 1;
+            // Stagger each column so the animation starts as natural rainfall
+            // instead of every character appearing in one synchronized row.
+            rainDrops[x] = Math.floor(Math.random() * (canvas.height / fontSize)) - Math.floor(canvas.height / fontSize);
         }
 
         // --- INTERACTIVE STATE VARIABLES ---
@@ -209,7 +211,7 @@
         window.addEventListener('resize', () => {
             columns = canvas.width / fontSize;
             while (rainDrops.length < columns) {
-                rainDrops.push(1);
+                rainDrops.push(Math.floor(Math.random() * (canvas.height / fontSize)) - Math.floor(canvas.height / fontSize));
             }
         });
     </script>
